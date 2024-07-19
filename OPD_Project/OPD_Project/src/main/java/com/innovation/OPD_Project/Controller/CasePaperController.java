@@ -13,39 +13,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.innovation.OPD_Project.Services.AppointmentService;
-import com.innovation.OPD_Project.model.Appointment;
+import com.innovation.OPD_Project.Services.CasePaperService;
+import com.innovation.OPD_Project.model.CasePaper;
 
 @RestController
 @RequestMapping("/odp/")
 @CrossOrigin(origins = "http://localhost:4200")
-public class AppointmentContoller {
-	@Autowired
-    AppointmentService as;
+public class CasePaperController {
 	
-	@GetMapping("/Appointment")
-	public List<Appointment> getAll()
+	@Autowired
+	CasePaperService cs;
+	
+	@GetMapping("/CasePaper")
+	public List<CasePaper> getAll()
 	{
-		return as.getAll();
+		return cs.getAll();
 	}
-	@PostMapping("/Appointment")
-	public Appointment insert(@RequestBody Appointment p)
+	@PostMapping("/CasePaper")
+	public CasePaper insert(@RequestBody CasePaper c)
 	{
-		return as.insert(p);
+		return cs.insert(c);
+		
 	}
-	@DeleteMapping("/Appointment/{id}")
+	@DeleteMapping("/CasePaper/{id}")
 	public void delete(@PathVariable("id")long id)
 	{
-		as.delete(id);
+		 cs.delete(id);
 	}
-	@PutMapping("/Appointment/{id}")
-	public Appointment update(@PathVariable("id")long id,@RequestBody Appointment p)
+	@PutMapping("/CasePaper/{id}")
+	public CasePaper update(@PathVariable("id")long id, @RequestBody CasePaper c)
 	{
-		return as.update(id, p);
+		return cs.update(id, c);
 	}
-	@GetMapping("/Appointment/{id}")
-	public Appointment search(@PathVariable("id")long id)
+	@GetMapping("/CasePaper/{id}")
+	public CasePaper search(@PathVariable("id")long id)
 	{
-		return as.search(id);
+		return cs.search(id);
 	}
+
 }
